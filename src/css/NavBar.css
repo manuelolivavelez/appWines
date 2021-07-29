@@ -1,0 +1,10 @@
+.navbar-brand {
+    padding-left: 5%;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 28px;
+}
+
+.navbar-nav{
+    padding-right: 5%;
+    font-family: 'Roboto', sans-serif;
+}

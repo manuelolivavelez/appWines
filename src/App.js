@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import "./css/Index.css"
+import NavBar from './components/NavBar.js';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Proyecto de React: App Wines - Manuel Oliva Velez
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header>
+        <NavBar/>
       </header>
+      <section>
+        <div className="home">
+          <h1 className="home-welcome">Bienvenidos a AppWines.</h1>
+        </div>
+      </section>
+      <footer>
+        <div className="footer-copyright">©2021 Todos los derechos reservados | <a href="">Manuel Oliva Velez</a></div>
+      </footer>
     </div>
   );
 }
