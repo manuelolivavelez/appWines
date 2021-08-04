@@ -1,7 +1,14 @@
 import "./css/Index.css"
 import NavBar from './components/NavBar.js';
+import CartWidget from "./components/CartWidget";
+import ItemListContainer from "./components/ItemListContainer";
 
 function App() {
+
+  const greeting = {
+    mensaje: 'Bienvenidos a App Wines.'
+  }
+
   return (
     <div>
       <header>
@@ -9,11 +16,11 @@ function App() {
       </header>
       <section>
         <div className="home">
-          <h1 className="home-welcome">Bienvenidos a AppWines.</h1>
+          <ItemListContainer greeting={greeting}/>
         </div>
       </section>
       <footer>
-        <div className="footer-copyright">©2021 Todos los derechos reservados | <a href="">Manuel Oliva Velez</a></div>
+        <div className="footer-copyright">©2021 Todos los derechos reservados | <a href="#">Manuel Oliva Velez</a></div>
       </footer>
     </div>
   );
