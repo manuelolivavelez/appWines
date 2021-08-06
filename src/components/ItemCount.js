@@ -4,8 +4,12 @@ function ItemCount() {
 
     const [count, setCount] = useState(0);
 
+    const stock = 20;
+
     function sumarCount() {
-        setCount(count + 1)
+        if (count < stock){
+            setCount(count + 1)
+        }
     }
 
     function restarCount() {
