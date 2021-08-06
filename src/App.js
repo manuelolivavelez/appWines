@@ -3,11 +3,10 @@ import NavBar from './components/NavBar.js';
 import CartWidget from "./components/CartWidget";
 import ItemListContainer from "./components/ItemListContainer";
 
+
 function App() {
 
-  const greeting = {
-    mensaje: 'Bienvenidos a App Wines.'
-  }
+  const greeting = 'Bienvenidos a App Wines.'
 
   return (
     <div>
@@ -16,7 +15,7 @@ function App() {
       </header>
       <section>
         <div className="home">
-          <ItemListContainer greeting={greeting}/>
+          <ItemListContainer greeting={greeting} />
         </div>
       </section>
       <footer>

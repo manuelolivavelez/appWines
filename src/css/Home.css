@@ -5,6 +5,36 @@
 }
 
 .home-welcome {
-    padding-top: 25%;
+    font-family: 'Roboto', sans-serif;
+    padding-top: 20%;
     text-align: center;
+}
+
+.item-count{
+    padding-top: 10%;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons-count-minus{
+    box-shadow: 0px 0px 10px grey;
+    font-weight: bold;
+    height: 2.5rem;
+    width: 2.5rem;
+    cursor: pointer;
+
+
+}
+
+.buttons-count-plus{
+    box-shadow: 0px 0px 10px grey;
+    font-weight: bold;
+    height: 2.5rem;
+    width: 2.5rem;
+    cursor: pointer;
+
+
 }
