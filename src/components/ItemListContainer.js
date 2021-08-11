@@ -1,5 +1,5 @@
 import React from 'react';
-import ItemCount from './ItemCount';
+import ItemList from './ItemList';
 
 
 const ItemListContainer = ({greeting}) => {
@@ -7,7 +7,7 @@ const ItemListContainer = ({greeting}) => {
     return(
         <>
         <h1 className="home-welcome">{greeting}</h1>
-        <ItemCount />
+        <ItemList />
         </>
     )
 

@@ -38,3 +38,12 @@
 
 
 }
+
+.cards-container{
+    display: flex;
+}
+
+.card{
+    width: 30%;
+    display:inline-flex; 
+}

@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
+import { Item } from './Item';
 
-function ItemCount() {
+function ItemCount({ stock, initial, onAdd }) {
 
-    const [count, setCount] = useState(0);
-
-    const stock = 20;
+    const [count, setCount] = useState(initial);
 
     function sumarCount() {
         if (count < stock){
@@ -25,6 +24,7 @@ function ItemCount() {
             <div className='buttons-count'>
                 <button onClick={restarCount} className='buttons-count-minus btn btn-danger'>-</button>
                 <button onClick={sumarCount} className='buttons-count-plus btn btn-primary'>+</button>
+                <button onClick={onAdd}>Agregar al Carrito</button>
             </div>
         </div>
 
