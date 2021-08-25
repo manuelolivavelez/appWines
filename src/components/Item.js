@@ -1,8 +1,7 @@
-import React, { Fragment } from 'react';
-import ItemCount from './ItemCount';
-import ItemList from './ItemList';
+import { Link } from "react-router-dom";
+import ItemCount from "./ItemCount";
 
-export const Item = ({ cadaProducto }) => {
+function Item(props) {
 
     const onAdd = (count) => {
         console.log(count);
@@ -10,13 +9,15 @@ export const Item = ({ cadaProducto }) => {
 
     return(
         <div className="card">
-            <img src={cadaProducto.pictureUrl} className="card-img-top" alt="..."/>
+            <img src={props.image} className="card-img-top" alt="..."/>
             <div className="card-body">
-                <h5 className="card-title">{cadaProducto.title}</h5>
-                <h4>$ {cadaProducto.price}</h4>
-                <p className="card-text">{cadaProducto.description}</p>
+                <h5 className="card-title">{props.title}</h5>
+                <h4>$ {props.price}</h4>
                 <ItemCount stock={6} initial={1} onAdd={onAdd}/>
+                <Link to={`/item-detail/${props.id}`}>Ver detalle</Link>
             </div>
         </div>
     );
 };
+
+export default Item;
