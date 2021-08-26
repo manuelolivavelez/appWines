@@ -1,77 +1,38 @@
 import { useEffect, useState } from "react";
-import React from 'react';
+import { useParams } from "react-router";
 import ItemList from './ItemList';
+import { drinks } from './drinks';
 
 
-function ItemListContainer() {
+const ItemListContainer = (props) => {
     
     const [ products, setProducts ] = useState([]);
-    const [ loading, setLoading ] = useState(false);
+
+    let { categoryId } = useParams();
+
+    categoryId = parseInt(categoryId);
 
     useEffect(() => {
 
         new Promise((resolve, reject) => {
 
-            const data = [
-                {
-                    id: "1",
-                    title: "Perro Callejero",
-                    uva: "Malbec",
-                    bodega: "Bodega Mosquita Muerta",
-                    price: "500",
-                    image: "https://www.espaciovino.com.ar/media/default/0001/54/thumb_53085_default_big.jpeg"
-                },
-                {
-                    id: "2",
-                    title: "Clos de los Siete",
-                    uva: "Red Blend",
-                    bodega: "Bodega Clos de los Siete",
-                    price: "900",
-                    image: "https://www.espaciovino.com.ar/media/default/0001/53/thumb_52808_default_big.jpeg"
-                },
-                {
-                    id: "3",
-                    title: "Casa Boher",
-                    uva: "Malbec",
-                    bodega: "Bodega Rosell Boher",
-                    price: "750",
-                    image: "https://www.espaciovino.com.ar/media/default/0001/56/thumb_55353_default_big.jpeg"
-                },
-                {
-                    id: "4",
-                    title: "Nicasia Vineyards",
-                    uva: "Malbec",
-                    bodega: "Bodega Catena Zapata",
-                    price: "550",
-                    image: "https://www.espaciovino.com.ar/media/default/0001/53/thumb_52948_default_big.jpeg"
-                },
-                {
-                    id: "5",
-                    title: "Trumpeter",
-                    uva: "Malbec",
-                    bodega: "Bodega Rutini Wines",
-                    price: "700",
-                    image: "https://www.espaciovino.com.ar/media/default/0001/62/thumb_61963_default_big.jpeg"
-                },
-                {
-                    id: "6",
-                    title: "La Linda",
-                    uva: "Chardonnay",
-                    bodega: "Bodega Luigi Bosca",
-                    price: "650",
-                    image: "https://www.espaciovino.com.ar/media/default/0001/54/thumb_53045_default_big.jpeg"
-                }
-            ];
-
-            setLoading(true);
-
-            setTimeout(() => resolve(data), 2000);
+            setTimeout(() => resolve(drinks), 2000);
 
         })
 
-        .then((dataResolve) => {
+        .then((products) => {
 
-            setProducts(dataResolve);
+            if (categoryId) {
+
+                const filteredItems = products.filter((product) => product.categoryId === categoryId);
+
+                setProducts(filteredItems);
+            
+            } else {
+
+                setProducts(products);
+
+            }
 
         })
 
@@ -81,23 +42,26 @@ function ItemListContainer() {
 
         })
 
-        .finally(() => {
-            setLoading(false);
-        });
+    }, [categoryId]);
 
+    return (
 
-    }, []);
+        <div>
 
-    return loading ? (
+            <h2>{props.greeting}</h2>
 
-        <h1 className="home-welcome">Loading...</h1>
+            {drinks.length > 0 ? (
 
-    ) : (
+                <ItemList products={products} />
 
-        <ItemList products={products}/>
-    
-    )
+            ) : (
 
+                <img src={"https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif"} alt={"Loading..."} />
+            
+            )}
+
+        </div>
+    );
 }
 
 export default ItemListContainer;

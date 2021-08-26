@@ -1,24 +1,25 @@
-import { useState } from "react";
-import ItemCount from "./ItemCount";
+const ItemDetail = ({ product }) => {
 
-function ItemDetail(props) {
+    return (
 
-    const onAdd = (count) => {
-        console.log(count);
-    }
+        <div className='card'>
 
-    return(
-        <div>
-            <h1>Detail</h1>
-            <img src={props.image} />
-            <div>
-                <h4>{props.title}</h4>
-                <h3>$ {props.price}</h3>
-                <h5>Tipo de uva: {props.uva}</h5>
-                <h5>Bodega: {props.bodega}</h5>
-                <ItemCount stock={6} initial={1} onAdd={onAdd}/>
+            <img src={product.image} className='card-img-top' alt={product.title}/>
+            
+            <div className='card-body'>
+            
+                <h3 className='card-title'>{product.title}</h3>
+            
+                <h4>$ {product.price}.-</h4>
+
+                <h5>Variedad: {product.variety}</h5>
+
+                <h5>Bodega: {product.cellar}</h5>
+            
             </div>
+        
         </div>
+    
     );
 
 }

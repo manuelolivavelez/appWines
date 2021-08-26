@@ -1,14 +1,30 @@
+import { Link } from "react-router-dom";
 import Item from "./Item";
+import ItemCount from "./ItemCount";
 
 
-function ItemList({products}) {
+const ItemList = ({ products }) => {
 
-    return(
+    return (
 
         <div>
-            {products.map((item) => (
-                <Item {...item}/>
+
+            {products.map((product) => (
+
+                <div>
+
+                    <Link to={`/item-detail/${product.id}`}>
+                        
+                        <Item product={product} />
+                    
+                    </Link>
+                    
+                    <ItemCount stock={6} initial={1} onAdd={console.log()} />
+                
+                </div>
+            
             ))}
+        
         </div>
 
     );
