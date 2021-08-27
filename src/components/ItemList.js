@@ -18,8 +18,6 @@ const ItemList = ({ products }) => {
                         <Item product={product} />
                     
                     </Link>
-                    
-                    <ItemCount stock={6} initial={1} onAdd={console.log()} />
                 
                 </div>
             
