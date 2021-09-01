@@ -4,7 +4,7 @@ const ItemCount = ({ product, stock, initial, onAdd }) => {
 
     const [count, setCount] = useState(initial);
 
-    function sumarCount() {
+    const sumarCount = () => {
 
         if (count < stock){
         
@@ -14,7 +14,7 @@ const ItemCount = ({ product, stock, initial, onAdd }) => {
     
     }
 
-    function restarCount() {
+    const restarCount = () => {
 
         if (count > 0){
 

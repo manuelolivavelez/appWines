@@ -1,14 +1,31 @@
 import ItemCount from "./ItemCount";
 import { Link } from 'react-router-dom';
-import { useState } from "react";
+import { useContext, useState } from "react";
+import CartContext from "../context/CartContext";
 
 const ItemDetail = ({ product }) => {
+
+    const { products, setProducts, cart, setCart } = useContext(CartContext);
+
+    console.log('products y setProducts', {products, setProducts});
+
+    console.log('cart',{cart});
 
     const [ newCount, setNewCount ] = useState(0)
 
     const onAdd = (count) => {
 
         setNewCount(count);
+
+    }
+
+    const endCart = () => {
+        
+        const newCart = [...cart];
+
+        newCart.push(products[0]);
+
+        setCart(newCart);
 
     }
 
@@ -32,7 +49,7 @@ const ItemDetail = ({ product }) => {
                     
                     <Link to={`/cart`}>
                         
-                        <button>Terminar mi compra</button>
+                        <button onClick={endCart}>Terminar mi compra</button>
                     
                     </Link>
 

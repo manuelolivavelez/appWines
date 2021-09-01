@@ -3,39 +3,51 @@ import "./css/Index.css";
 import NavBar from './components/NavBar.js';
 import ItemListContainer from "./components/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer";
+import Cart from "./components/Cart";
+import { CartProvider } from "./context/CartContext";
 
 
 function App() {
 
     return (
 
-      <BrowserRouter>
-        
-        <NavBar />
-        
-        <Switch>
+      <CartProvider>
 
-          <Route exact path="/">
+        <BrowserRouter>
           
-            <ItemListContainer greeting={"Bienvenido!"} />
+          <NavBar />
           
-          </Route>
+          <Switch>
+
+            <Route exact path="/">
+            
+              <ItemListContainer greeting={"Bienvenido!"} />
+            
+            </Route>
+            
+            <Route exact path="/category/:categoryId">
+            
+              <ItemListContainer />
+            
+            </Route>
+            
+            <Route exact path="/item-detail/:id">
+            
+              <ItemDetailContainer />
+            
+            </Route>
+
+            <Route exact path="/cart">
+            
+              <Cart />
+            
+            </Route>
           
-          <Route exact path="/category/:categoryId">
-          
-            <ItemListContainer />
-          
-          </Route>
-          
-          <Route exact path="/item-detail/:id">
-          
-            <ItemDetailContainer />
-          
-          </Route>
-        
-        </Switch>
-    
-    </BrowserRouter>
+          </Switch>
+      
+      </BrowserRouter>
+
+    </CartProvider>
   
   );
 
