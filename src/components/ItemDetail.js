@@ -5,11 +5,7 @@ import CartContext from "../context/CartContext";
 
 const ItemDetail = ({ product }) => {
 
-    const { products, setProducts, cart, setCart } = useContext(CartContext);
-
-    console.log('products y setProducts', {products, setProducts});
-
-    console.log('cart',{cart});
+    const { addItem } = useContext(CartContext);
 
     const [ newCount, setNewCount ] = useState(0)
 
@@ -17,15 +13,7 @@ const ItemDetail = ({ product }) => {
 
         setNewCount(count);
 
-    }
-
-    const endCart = () => {
-        
-        const newCart = [...cart];
-
-        newCart.push(products[0]);
-
-        setCart(newCart);
+        addItem({...product, cantidad: count })
 
     }
 
@@ -49,7 +37,7 @@ const ItemDetail = ({ product }) => {
                     
                     <Link to={`/cart`}>
                         
-                        <button onClick={endCart}>Terminar mi compra</button>
+                        <button>Terminar mi compra</button>
                     
                     </Link>
 
