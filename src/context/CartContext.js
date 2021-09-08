@@ -1,5 +1,24 @@
 import { createContext, useState } from "react";
 
+
+const checkItemQty = ( list , product ) => {
+
+    const drinkFound = list.find(drink => drink.id === product.id);
+
+    if (drinkFound) {
+
+        drinkFound.count++;
+
+    } else {
+
+        list.push({ ...product , count: 1 });
+
+    }
+
+    return list;
+
+}
+
 const CartContext = createContext ([]);
 
 export const CartProvider = ({ children }) => {
@@ -8,9 +27,15 @@ export const CartProvider = ({ children }) => {
 
     const addItem = (product) => {
 
-        setCart([ ...cart, product ])
+        const cartDraft = [ ...cart ];
 
-        console.log('carrito', cart);
+        cartDraft.push(product);
+
+        const cleanCart = checkItemQty( cartDraft , product );
+
+        setCart(cartDraft);
+
+        console.log('carrito', cartDraft);
 
     }
 

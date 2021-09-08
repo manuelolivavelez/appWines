@@ -5,49 +5,54 @@ import ItemListContainer from "./components/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer";
 import Cart from "./components/Cart";
 import { CartProvider } from "./context/CartContext";
+import { DrinkProvider } from "./context/DrinkContext";
 
 
 function App() {
 
     return (
 
-      <CartProvider>
+      <DrinkProvider>
 
-        <BrowserRouter>
-          
-          <NavBar />
-          
-          <Switch>
+        <CartProvider>
 
-            <Route exact path="/">
+          <BrowserRouter>
             
-              <ItemListContainer greeting={"Bienvenido!"} />
+            <NavBar />
             
-            </Route>
-            
-            <Route exact path="/category/:categoryId">
-            
-              <ItemListContainer />
-            
-            </Route>
-            
-            <Route exact path="/item-detail/:id">
-            
-              <ItemDetailContainer />
-            
-            </Route>
+            <Switch>
 
-            <Route exact path="/cart">
-            
-              <Cart />
-            
-            </Route>
-          
-          </Switch>
-      
-      </BrowserRouter>
+              <Route exact path="/">
+              
+                <ItemListContainer greeting={"Bienvenido!"} />
+              
+              </Route>
+              
+              <Route exact path="/category/:categoryId">
+              
+                <ItemListContainer />
+              
+              </Route>
+              
+              <Route exact path="/item-detail/:id">
+              
+                <ItemDetailContainer />
+              
+              </Route>
 
-    </CartProvider>
+              <Route exact path="/cart">
+              
+                <Cart />
+              
+              </Route>
+            
+            </Switch>
+        
+        </BrowserRouter>
+
+      </CartProvider>
+
+    </DrinkProvider>
   
   );
 
