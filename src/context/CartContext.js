@@ -7,7 +7,7 @@ const checkItemQty = ( list , product ) => {
 
     if (drinkFound) {
 
-        drinkFound.count++;
+        drinkFound.cantidad++;
 
     } else {
 

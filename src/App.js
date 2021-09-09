@@ -1,18 +1,17 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { CartProvider } from "./context/CartContext";
+
 import "./css/Index.css";
 import NavBar from './components/NavBar.js';
 import ItemListContainer from "./components/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer";
 import Cart from "./components/Cart";
-import { CartProvider } from "./context/CartContext";
-import { DrinkProvider } from "./context/DrinkContext";
+
 
 
 function App() {
 
     return (
-
-      <DrinkProvider>
 
         <CartProvider>
 
@@ -51,8 +50,6 @@ function App() {
         </BrowserRouter>
 
       </CartProvider>
-
-    </DrinkProvider>
   
   );
 
