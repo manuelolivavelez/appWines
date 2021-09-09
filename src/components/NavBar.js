@@ -1,7 +1,13 @@
-import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+
+import CartWidget from "./CartWidget";
+import CartContext from "../context/CartContext";
+
 
 const NavBar = () => {
+
+    const { cart } = useContext(CartContext);
 
     return (
         
@@ -43,7 +49,7 @@ const NavBar = () => {
         
                         <li className="nav-item">
         
-                            <CartWidget />
+                            <CartWidget countCartItems={cart.length} />
         
                         </li>
         

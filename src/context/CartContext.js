@@ -1,24 +1,6 @@
 import { createContext, useState } from "react";
 
 
-const checkItemQty = ( list , product ) => {
-
-    const drinkFound = list.find(drink => drink.id === product.id);
-
-    if (drinkFound) {
-
-        drinkFound.cantidad++;
-
-    } else {
-
-        list.push({ ...product , count: 1 });
-
-    }
-
-    return list;
-
-}
-
 const CartContext = createContext ([]);
 
 export const CartProvider = ({ children }) => {
@@ -26,22 +8,56 @@ export const CartProvider = ({ children }) => {
     const [ cart, setCart ] = useState([]);
 
     const addItem = (product) => {
+        
+        const exist = cart.find((item) => item.id === product.id);
+        
+        if (exist) {
+            
+            setCart(
+                
+                cart.map((item) =>
+                
+                item.id === product.id ? { ...exist, cantidad: exist.cantidad + 1 } : item
+                
+                )
+            
+            );
+        
+        } else {
+          
+            setCart([...cart, { ...product, cantidad: 1 }]);
+        
+        }
+      
+    };
 
-        const cartDraft = [ ...cart ];
+    const removeItem = (product) => {
 
-        cartDraft.push(product);
+        const exist = cart.find((item) => item.id === product.id);
 
-        const cleanCart = checkItemQty( cartDraft , product );
+        if (exist.cantidad === 1) {
 
-        setCart(cartDraft);
+            setCart(cart.filter((item) => item.id !== product.id));
 
-        console.log('carrito', cartDraft);
+        } else {
+
+            setCart(
+                
+                cart.map((item) => 
+              
+                item.id === product.id ? { ...exist, cantidad: exist.cantidad - 1 } : item
+              
+                )
+            
+            );
+        
+        }
 
     }
 
     return (
         <CartContext.Provider
-            value={{ cart , addItem }}
+            value={{ cart , addItem , removeItem }}
         >
             { children }
         </CartContext.Provider>

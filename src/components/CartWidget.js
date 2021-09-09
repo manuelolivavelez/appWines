@@ -1,13 +1,24 @@
-const CartWidget = () => {
+import { Link } from "react-router-dom";
+
+const CartWidget = ({ countCartItems }) => {
     
     return (
+
+        <Link to={`/cart`} style={{ padding: "8px", margin: "20px"}}>
         
-        <span style={{ padding: "8px", margin: "20px"}}>
+            🛒{''}
+            
+            {countCartItems ? (
+            
+                <button className="badge" style={{ backgroundColor: "red"}}>{countCartItems}</button>
+            
+            ) : (
+
+                ''
+
+            )}
         
-            🛒
-        
-        </span>
-    
+        </Link>
     )
 
 }
