@@ -1,56 +1,57 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { collection , getDocs } from "firebase/firestore";
+import { getData } from "../firebase";
+
 import ItemList from './ItemList';
 import { drinks } from './drinks';
 
 
-const ItemListContainer = (props) => {
+const ItemListContainer = () => {
     
     const [ products, setProducts ] = useState([]);
 
-    let { categoryId } = useParams();
+    let { categoria } = useParams();
 
-    categoryId = parseInt(categoryId);
+    categoria = parseInt(categoria);
 
     useEffect(() => {
 
-        new Promise((resolve, reject) => {
+        const getProducts = async () => {
 
-            setTimeout(() => resolve(drinks), 2000);
+            console.log("1");
 
-        })
+            const productCollection = collection(getData(), "products");
+    
+            const productSnapshot = await getDocs(productCollection);
+    
+            const productList = productSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data()}));
+    
+            console.log("lista de productos" , productList);
 
-        .then((products) => {
+            if (categoria) {
 
-            if (categoryId) {
-
-                const filteredItems = products.filter((product) => product.categoryId === categoryId);
+                const filteredItems = productList.filter((product) => product.categoria === categoria);
 
                 setProducts(filteredItems);
             
             } else {
 
-                setProducts(products);
+                setProducts(productList);
 
             }
-
-        })
-
-        .catch((error) => {
-
-            console.log('error', error);
-
-        })
-
-    }, [categoryId]);
+    
+        };
+    
+        getProducts();
+    
+    }, [categoria]);
 
     return (
 
         <div>
 
-            <h2>{props.greeting}</h2>
-
-            {drinks.length > 0 ? (
+            {products.length > 0 ? (
 
                 <ItemList products={products} />
 

@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { collection , getDocs } from "firebase/firestore";
+import { getData } from "../firebase";
+
 import ItemDetail from "./ItemDetail";
-import { drinks } from './drinks';
 
 
 const ItemDetailContainer = () => {
 
-    const [product, setProduct] = useState([]);
+    const [ products, setProducts ] = useState([]);
 
     let { id } = useParams();
 
@@ -14,26 +16,22 @@ const ItemDetailContainer = () => {
 
     useEffect(() => {
 
-        new Promise((resolve, reject) => {
+        const getProducts = async () => {
 
-            setTimeout(() => resolve(drinks), 2000);
+            const productCollection = collection(getData(), "products");
+    
+            const productSnapshot = await getDocs(productCollection);
+    
+            const productList = productSnapshot.docs.map(doc => doc.data());
+    
+            console.log("lista de productos" , productList);
 
-        })
-
-        .then((dataResolve) => {
-
-            const itemFound = dataResolve.find((item) => item.id === id);
-
-            setProduct(itemFound);
-
-        })
-
-        .catch((error) => {
-
-            console.log('error', error);
-
-        })
-
+            setProducts(productList);
+    
+        };
+    
+        getProducts();
+    
     }, []);
 
     return (
@@ -42,9 +40,9 @@ const ItemDetailContainer = () => {
             
             <h2>Detalle del producto</h2>
 
-            {Object.keys(product).length ? (
+            {Object.keys(products).length ? (
 
-                <ItemDetail product={product} />
+                <ItemDetail products={products} />
             
             ) : (
                 

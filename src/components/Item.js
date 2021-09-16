@@ -1,16 +1,16 @@
-const Item = ({ product }) => {
+const Item = ({ products }) => {
 
     return (
 
         <div className='card'>
 
-            <img src={product.image} className='card-img-top' alt={product.title}/>
+            <img src={products.image} className='card-img-top' alt={products.nombre}/>
             
             <div className='card-body'>
             
-                <h5 className='card-title'>{product.title}</h5>
+                <h5 className='card-title'>{products.nombre}</h5>
             
-                <h4>$ {product.price}</h4>
+                <h4>$ {products.precio}</h4>
             
             </div>
         

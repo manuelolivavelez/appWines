@@ -24,11 +24,11 @@ function App() {
 
               <Route exact path="/">
               
-                <ItemListContainer greeting={"Bienvenido!"} />
+                <ItemListContainer />
               
               </Route>
               
-              <Route exact path="/category/:categoryId">
+              <Route exact path="/category/:categoria">
               
                 <ItemListContainer />
               
