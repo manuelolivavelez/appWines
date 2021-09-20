@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useContext, useState } from "react";
 import CartContext from "../context/CartContext";
 
-const ItemDetail = ({ product }) => {
+const ItemDetail = ({ detail }) => {
 
     const { addItem } = useContext(CartContext);
 
@@ -11,9 +11,13 @@ const ItemDetail = ({ product }) => {
 
     const onAdd = (count) => {
 
+        console.log("contador", count);
+
         setNewCount(count);
 
-        addItem({...product, cantidad: count })
+        addItem({...detail, cantidad: newCount});
+
+        console.log("productos agregados", detail);
 
     }
 
@@ -21,17 +25,17 @@ const ItemDetail = ({ product }) => {
 
         <div className='card'>
 
-            <img src={product.image} className='card-img-top' alt={product.title}/>
+            <img src={detail.imagen} className='card-img-top' alt={detail.nombre}/>
             
             <div className='card-body'>
             
-                <h3 className='card-title'>{product.title}</h3>
+                <h3 className='card-title'>{detail.nombre}</h3>
             
-                <h4>$ {product.price}.-</h4>
+                <h4>$ {detail.precio}.-</h4>
 
-                <h5>Variedad: {product.variety}</h5>
+                <h5>Variedad: {detail.variedad}</h5>
 
-                <h5>Bodega: {product.cellar}</h5>
+                <h5>Bodega: {detail.bodega}</h5>
 
                 {newCount > 0 ? (
                     
@@ -43,7 +47,7 @@ const ItemDetail = ({ product }) => {
 
                 ) : (
 
-                    <ItemCount product={product} stock={6} initial={1} onAdd={onAdd}/>
+                    <ItemCount detail={detail} stock={detail.stock} initial={1} onAdd={onAdd}/>
 
                 )}
             

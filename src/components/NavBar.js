@@ -31,19 +31,19 @@ const NavBar = () => {
         
                         <li className="nav-item">
         
-                            <Link to ="/category/1" className="nav-link">Vinos Tintos</Link>
+                            <Link to ="/category/tintos" className="nav-link">Vinos Tintos</Link>
         
                         </li>
         
                         <li className="nav-item">
         
-                            <Link to="/category/2" className="nav-link">Vinos Blancos</Link>
+                            <Link to="/category/blancos" className="nav-link">Vinos Blancos</Link>
         
                         </li>
         
                         <li className="nav-item">
         
-                            <Link to="/category/3" className="nav-link">Espumantes</Link>
+                            <Link to="/category/espumantes" className="nav-link">Espumantes</Link>
         
                         </li>
         

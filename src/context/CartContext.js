@@ -7,9 +7,9 @@ export const CartProvider = ({ children }) => {
 
     const [ cart, setCart ] = useState([]);
 
-    const addItem = (product) => {
+    const addItem = (products) => {
         
-        const exist = cart.find((item) => item.id === product.id);
+        const exist = cart.find((item) => item.id === products.id);
         
         if (exist) {
             
@@ -17,7 +17,7 @@ export const CartProvider = ({ children }) => {
                 
                 cart.map((item) =>
                 
-                item.id === product.id ? { ...exist, cantidad: exist.cantidad + 1 } : item
+                item.id === products.id ? { ...exist, cantidad: exist.cantidad + 1 } : item
                 
                 )
             
@@ -25,19 +25,19 @@ export const CartProvider = ({ children }) => {
         
         } else {
           
-            setCart([...cart, { ...product, cantidad: 1 }]);
+            setCart([...cart, { ...products, cantidad: 1 }]);
         
         }
       
     };
 
-    const removeItem = (product) => {
+    const removeItem = (products) => {
 
-        const exist = cart.find((item) => item.id === product.id);
+        const exist = cart.find((item) => item.id === products.id);
 
         if (exist.cantidad === 1) {
 
-            setCart(cart.filter((item) => item.id !== product.id));
+            setCart(cart.filter((item) => item.id !== products.id));
 
         } else {
 
@@ -45,7 +45,7 @@ export const CartProvider = ({ children }) => {
                 
                 cart.map((item) => 
               
-                item.id === product.id ? { ...exist, cantidad: exist.cantidad - 1 } : item
+                item.id === products.id ? { ...exist, cantidad: exist.cantidad - 1 } : item
               
                 )
             
@@ -54,6 +54,8 @@ export const CartProvider = ({ children }) => {
         }
 
     }
+
+    console.log("carrito", cart);
 
     return (
         <CartContext.Provider

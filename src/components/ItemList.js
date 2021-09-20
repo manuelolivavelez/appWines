@@ -16,7 +16,7 @@ const ItemList = ({ products }) => {
 
                     <Link to={`/item-detail/${product.id}`}>
                         
-                        <Item product={product} />
+                        <Item products={product} />
                     
                     </Link>
                 

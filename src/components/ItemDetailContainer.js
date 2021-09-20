@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { collection , getDocs } from "firebase/firestore";
+import { useParams } from "react-router";
+import { collection , getDocs , doc , getDoc } from "firebase/firestore";
 import { getData } from "../firebase";
 
 import ItemDetail from "./ItemDetail";
@@ -8,30 +8,35 @@ import ItemDetail from "./ItemDetail";
 
 const ItemDetailContainer = () => {
 
-    const [ products, setProducts ] = useState([]);
+    const [ detail, setDetail ] = useState([]);
 
     let { id } = useParams();
 
-    id = parseInt(id);
-
     useEffect(() => {
 
-        const getProducts = async () => {
+        const getItem = async () => {
 
-            const productCollection = collection(getData(), "products");
-    
-            const productSnapshot = await getDocs(productCollection);
-    
-            const productList = productSnapshot.docs.map(doc => doc.data());
-    
-            console.log("lista de productos" , productList);
+            const productReference = doc(getData(), "productos", id);
 
-            setProducts(productList);
-    
+            const docSnapshot = await getDoc(productReference);
+
+            if (docSnapshot.exists()) {
+
+                console.log("Document data:", docSnapshot.data());
+
+                console.log("Document ID:", docSnapshot.id);
+
+                setDetail(docSnapshot.data());
+
+            } else {
+
+                console.log("No se encontro el documento.");
+
+            }
         };
-    
-        getProducts();
-    
+
+        getItem();
+
     }, []);
 
     return (
@@ -40,9 +45,9 @@ const ItemDetailContainer = () => {
             
             <h2>Detalle del producto</h2>
 
-            {Object.keys(products).length ? (
+            {Object.keys(detail).length ? (
 
-                <ItemDetail products={products} />
+                <ItemDetail detail={detail} />
             
             ) : (
                 

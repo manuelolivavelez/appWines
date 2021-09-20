@@ -4,7 +4,6 @@ import { collection , getDocs } from "firebase/firestore";
 import { getData } from "../firebase";
 
 import ItemList from './ItemList';
-import { drinks } from './drinks';
 
 
 const ItemListContainer = () => {
@@ -13,25 +12,23 @@ const ItemListContainer = () => {
 
     let { categoria } = useParams();
 
-    categoria = parseInt(categoria);
-
     useEffect(() => {
 
         const getProducts = async () => {
 
-            console.log("1");
-
-            const productCollection = collection(getData(), "products");
+            const productCollection = collection(getData(), "productos");
     
             const productSnapshot = await getDocs(productCollection);
     
             const productList = productSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data()}));
     
-            console.log("lista de productos" , productList);
+            console.log("ItemListContainer" , productList);
 
             if (categoria) {
 
                 const filteredItems = productList.filter((product) => product.categoria === categoria);
+
+                console.log("filtro", filteredItems);
 
                 setProducts(filteredItems);
             

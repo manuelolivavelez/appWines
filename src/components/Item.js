@@ -4,7 +4,7 @@ const Item = ({ products }) => {
 
         <div className='card'>
 
-            <img src={products.image} className='card-img-top' alt={products.nombre}/>
+            <img src={products.imagen} className='card-img-top' alt={products.nombre}/>
             
             <div className='card-body'>
             

@@ -7,7 +7,7 @@ const Cart = () => {
 
     const { cart , addItem , removeItem } = useContext(CartContext);
 
-    const totalPrice = cart.reduce((acc, product) => acc + product.cantidad * product.price, 0);
+    const totalPrice = cart.reduce((acc, products) => acc + products.cantidad * products.precio, 0);
 
     return (
 
@@ -33,21 +33,21 @@ const Cart = () => {
                 
                 }
             
-                {cart.map((product) => (
+                {cart.map((products) => (
                 
-                    <div key={product.id} className="row">
+                    <div key={products.id} className="row">
                 
-                        <div className="col-2">{product.title}</div>
+                        <div className="col-2">{products.nombre}</div>
                 
                         <div className="col-2">
                         
-                            <button onClick={() => removeItem(product)} className="remove">
+                            <button onClick={() => removeItem(products)} className="remove">
                         
                             -
                         
                             </button>{' '}
                         
-                            <button onClick={() => addItem(product)} className="add">
+                            <button onClick={() => addItem(products)} className="add">
                             
                             +
                             
@@ -57,7 +57,7 @@ const Cart = () => {
         
                         <div className="col-2 text-right">
                     
-                            {product.cantidad} x ${product.price}
+                            {products.cantidad} x ${products.precio}
                     
                         </div>
                 
